@@ -56,7 +56,7 @@ export default class Logging {
       return;
     }
     if (Globals.v3Utils) {
-      Globals.serverless.addServiceOutputSection(Globals.pluginName, summaryList);
+      Globals.serverless.addServiceOutputSection(`${Globals.pluginName} [${Globals.serverless.service.service}]`, summaryList);
     } else {
       Logging.cliLog("[Summary]", "Distribution Domain Name");
       summaryList.forEach((item) => {
