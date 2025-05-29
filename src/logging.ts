@@ -56,8 +56,7 @@ export default class Logging {
       return;
     }
     if (Globals.v3Utils) {
-      // @ts-ignore
-      if (!Globals.serverless?.serviceOutputs?.has(Globals.pluginName)) {
+      if (!Globals.serverless?.servicePluginOutputs?.has(Globals.pluginName)) {
         Globals.serverless.addServiceOutputSection(Globals.pluginName, summaryList);
       }
     } else {

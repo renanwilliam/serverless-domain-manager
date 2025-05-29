@@ -67,7 +67,8 @@ export interface ServerlessInstance {
   cli: {
     log (str: string, entity?: string)
   };
-
+  serviceOutputs?: Map<string, any>;
+  servicePluginOutputs?: Map<string, any>;
   addServiceOutputSection? (name: string, data: string[]);
 }
 
