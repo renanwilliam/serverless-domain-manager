@@ -7,8 +7,8 @@ export default class Logging {
   }
 
   /**
-     * Logs error message
-     */
+   * Logs error message
+   */
   public static logError (message: string): void {
     if (Globals.v3Utils) {
       Globals.v3Utils.log.error(message);
@@ -18,8 +18,8 @@ export default class Logging {
   }
 
   /**
-     * Logs info message
-     */
+   * Logs info message
+   */
   public static logInfo (message: string): void {
     if (Globals.v3Utils) {
       Globals.v3Utils.log.verbose(message);
@@ -29,8 +29,8 @@ export default class Logging {
   }
 
   /**
-     * Logs warning message
-     */
+   * Logs warning message
+   */
   public static logWarning (message: string): void {
     if (Globals.v3Utils) {
       Globals.v3Utils.log.warning(message);
@@ -40,8 +40,8 @@ export default class Logging {
   }
 
   /**
-     * Prints out a summary of all domain manager related info
-     */
+   * Prints out a summary of all domain manager related info
+   */
   public static printDomainSummary (domains: DomainConfig[]): void {
     const summaryList = [];
     domains.forEach((domain) => {
@@ -56,7 +56,10 @@ export default class Logging {
       return;
     }
     if (Globals.v3Utils) {
-      Globals.serverless.addServiceOutputSection(`${Globals.pluginName} [${crypto.randomUUID()}]`, summaryList);
+      // @ts-ignore
+      if (!Globals.serverless?.serviceOutputs?.has(Globals.pluginName)) {
+        Globals.serverless.addServiceOutputSection(Globals.pluginName, summaryList);
+      }
     } else {
       Logging.cliLog("[Summary]", "Distribution Domain Name");
       summaryList.forEach((item) => {
